@@ -1,0 +1,11 @@
+- hosts: Control_Node
+  tasks:
+    - name: Extract executable files from PCAP file
+      command: tcpxtract -f /home/junemel/pcap/HOA8.1.pcap -o /home/junemel/output/
+
+- hosts: Manage_Node
+  tasks:
+    - name: Copy file from control node to manage node
+      copy:
+        src: /home/junemel/output/
+        dest: /home/junemel/CPE243_HOA8.1/
